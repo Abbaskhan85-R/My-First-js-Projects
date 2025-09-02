@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+    <title>CountDown</title>
+    <style>
+        body{
+            font-family: "Black Ops One", system-ui;
+            font-weight: 400;
+            font-style: normal;
+            background-color: black !important;
+        }
+        h2{
+            font-size: 6rem !important;
+            color: greenyellow;
+            text-shadow: 2px 2px 10px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container-fluid d-flex justify-content-center align-items-center bg-dark min-vh-100">
+        <div class="container p-5">
+            <div class="d-flex gap-3 text-white justify-content-center">
+                <h2 class="display-1 hours">10</h2>
+                <h2 class="display-1">:</h2>
+                <h2 class="display-1 minutes">42</h2>
+                <h2 class="display-1">:</h2>
+                <h2 class="display-1 seconds">55</h2>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <script>
+        let hr = document.querySelector('.hours')
+        let min = document.querySelector('.minutes')
+        let sec = document.querySelector('.seconds')
+
+        let s = 55
+        let m = 42
+        let h = 10
+
+        setInterval(()=>{
+            s++
+            if(s > 59){
+                s = 0
+
+                m++
+                if(m > 59){
+                    m = 0
+                    h++
+                    if(h > 12){
+                        h = 1
+                    }
+                    hr.innerHTML = h
+                }
+                min.innerHTML = m
+            }
+            sec.innerHTML = s
+
+            if(s < 10){
+                sec.innerHTML = `0${s}`
+            }
+            if(m < 10){
+                min.innerHTML = `0${m}`
+            }
+            if(h < 10){
+                hr.innerHTML = `0${h}`
+            }
+        },1000)
+        
+    </script>
+
+
+
+</body>
+</html>

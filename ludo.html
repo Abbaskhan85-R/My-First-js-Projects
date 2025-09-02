@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ludo Dice Game</title>
+  <link rel="shortcut icon" href="download.jpeg" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <style>
+    .dice-img {
+      width: 150px;
+      height: 150px;
+    }
+    .winner {
+      font-size: 24px;
+      font-weight: bold;
+      color: green;
+    }
+    .first{
+      background-color: rgba(216, 207, 207, 0.347);
+    }
+  </style>
+</head>
+<body class="bg-light">
+
+<div class="container py-5 text-center">
+  <h1 class="mb-4"><i class="bi bi-dice-5-fill"></i> Ludo Dice Game</h1>
+  <div class="row justify-content-center">
+      <div class="mt-4">
+    <h3 id="winnerText" class="winner"></h3>
+  </div>
+    
+  
+    <div class="col-md-4">
+      <div class="card shadow-lg p-3 first">
+        <img id="dice1" src="download.jpeg" class="dice-img mx-auto">
+        <div class="card-body">
+          <h4 id="p1name">Player 1</h4>
+          <p>Score: <span id="score1">0</span></p>
+          <button class="btn btn-dark w-100" onclick="rollDice(1)">Roll Dice</button>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="col-md-4">
+      <div class="card shadow-lg p-3 first">
+        <img id="dice2" src="download.jpeg" class="dice-img mx-auto">
+        <div class="card-body">
+          <h4 id="p2name">Player 2</h4>
+          <p>Score: <span id="score2">0</span></p>
+          <button class="btn btn-info w-100" onclick="rollDice(2)">Roll Dice</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>
+
+ 
+  <script>
+    let scores = [0, 0];
+
+  
+    const diceImgs = [
+      "https://upload.wikimedia.org/wikipedia/commons/1/1b/Dice-1-b.svg",
+      "https://upload.wikimedia.org/wikipedia/commons/5/5f/Dice-2-b.svg",
+      "https://upload.wikimedia.org/wikipedia/commons/b/b1/Dice-3-b.svg",
+      "https://upload.wikimedia.org/wikipedia/commons/f/fd/Dice-4-b.svg",
+      "https://upload.wikimedia.org/wikipedia/commons/0/08/Dice-5-b.svg",
+      "https://upload.wikimedia.org/wikipedia/commons/2/26/Dice-6-b.svg"
+    ];
+    
+    let btn1=document.querySelector("#btn1")
+    let btn2=document.querySelector("#btn2")
+    let reset=document.querySelector("#reset")
+
+    btn1.addEventListener("click", () => rollDice(1));
+    btn2.addEventListener("click", () => rollDice(2));
+    reset.addEventListener("click", resetGame);
+
+  
+    function rollDice(player) {
+  
+      if (document.querySelector("#winnerText").innerText !== "") return;
+
+    
+      let roll = Math.floor(Math.random() * 6) + 1;
+
+    
+      document.querySelector("#dice" + player).src = diceImgs[roll - 1];
+
+
+      scores[player - 1] += roll;
+      document.querySelector("#score" + player).innerText = scores[player - 1];
+
+  
+      if (scores[player - 1] >= 100) {
+        document.querySelector("#winnerText").innerText = `🏆 Player ${player} Wins!`;
+      }
+    }
+
+    function resetGame() {
+      scores = [0, 0];
+      document.querySelector("#score1").innerText = "0";
+      document.querySelector("#score2").innerText = "0";
+      document.querySelector("#dice1").src = diceImgs[0];
+      document.querySelector("#dice2").src = diceImgs[0];
+      document.querySelector("#winnerText").innerText = "";
+    }
+
+    
+  </script>
+
+
+</body>
+</html>

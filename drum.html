@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="1.jpeg" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <title>Drums
+    </title>
+
+    <style>
+        .animate-keypress{
+            animation: press 1s ease-in-out alternate;
+        }
+
+        @keyframes press {
+            from{
+                scale: 1;
+            }
+            to{
+                scale: 0.95;
+                box-shadow: rgba(0,0,0,0.25) 0px 54px 55px, rgba(0,0,0,0.12) 0px -12px 30px , rgba(0,0,0,0.12) 0px 4px 6px , rgba(0,0,0,0.17) 0px 12px 13px , rgba(0,0,0,0.09) 0px -3px 5px;
+            }
+            
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <div class="container mt-5">
+        <h2 class="text-center text-success fw-semibold mt-3">Click the key of A(a) / S(s) / W(w) & D(d)</h2>
+        <hr>
+        <div class="row mt-5 justify-content-center align-items-center">
+            <div class="col-lg-3 mb-3 cards">
+                <div class="card border-0 bg-primary">
+                    <img src="1.jpeg" width="100%" alt="">
+                    <h1 class="text-center text-info">W</h1>
+                </div>
+            </div>
+            <div class="col-lg-3 mb-3 cards">
+                <div class="card border-0 bg-primary">
+                    <img src="2.jpeg" width="100%" alt="">
+                    <h1 class="text-center text-info">A</h1>
+                </div>
+            </div>
+            <div class="col-lg-3 mb-3 cards">
+                <div class="card border-0 bg-primary">
+                    <img src="3.jpeg" width="100%" alt="">
+                    <h1 class="text-center text-info">S</h1>
+                </div>
+            </div>
+            <div class="col-lg-3 mb-3 cards">
+                <div class="card border-0 bg-primary">
+                    <img src="4.png" width="100%" alt="">
+                    <h1 class="text-center text-info">D</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        let cards = document.querySelectorAll('.cards')
+        console.log(cards)
+
+        window.addEventListener('keyup', (e)=>{
+            if(e.key == 'w' || e.key == 'W'){
+                cards[0].classList.add('animate-keypress')
+                setTimeout(() => {
+                    cards[0].classList.remove('animate-keypress')
+                }, 1000);
+
+                let sound = new Audio('./1.mp3');
+                sound.play()
+
+            }
+            else if(e.key == 'a' || e.key == 'A'){
+                cards[1].classList.add('animate-keypress')
+                setTimeout(() =>{
+                    cards[1].classList.remove('animate-keypress')
+                },1000);
+
+                let sound = new Audio('./2.mp3');
+                sound.play()
+            }
+            else if(e.key == 's' || e.key == 'S'){
+                cards[2].classList.add('animate-keypress')
+                setTimeout(() =>{
+                    cards[2].classList.remove('animate-keypress')
+                },1000);
+
+                let sound = new Audio('./5.mp3');
+                sound.play()
+            }
+            else if(e.key == 'd' || e.key == 'D'){
+                cards[3].classList.add('animate-keypress')
+                setTimeout(() =>{
+                    cards[3].classList.remove('animate-keypress')
+                },1000);
+
+                let sound = new Audio('./4.mp3');
+                sound.play()
+            }
+           
+            
+        })
+
+
+    </script>
+
+</body>
+</html>
